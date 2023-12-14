@@ -12,6 +12,7 @@ namespace LaserGRBL
 {
 	public static class UrlManager
 	{
+		public static string LaserStatistics = null; // FIXME: missing from repo
 		public static string UpdateMain = null;
 		public static string UpdateMirror = null;
 		public static string Statistics = null;
