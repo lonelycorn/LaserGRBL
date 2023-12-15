@@ -10,6 +10,9 @@ using System.Text;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Helper class that manages custom button: (de)serialization, add/remove, etc
+	/// </summary>
 	[Serializable()]
 	public class CustomButtons
 	{
@@ -157,8 +160,10 @@ namespace LaserGRBL
 		public static int Count { get { return buttons.Count; } }
 	}
 
-
-	[Serializable]
+    /// <summary>
+    /// A programmable button that allows user to execute custom g-code
+    /// </summary>
+    [Serializable]
 	public class CustomButton
 	{
 		public enum EnableStyles { Always = 0, Connected = 1, Idle = 3, Run = 4, IdleProgram = 10}

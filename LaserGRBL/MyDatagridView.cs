@@ -11,6 +11,9 @@ using System.Text;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Basically DataGridView, with a workaround for a bug
+	/// </summary>
 	class MyDatagridView : System.Windows.Forms.DataGridView
 	{
 

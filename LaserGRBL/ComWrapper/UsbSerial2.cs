@@ -8,6 +8,9 @@ using MySerialPort;
 
 namespace LaserGRBL.ComWrapper
 {
+	/// <summary>
+	/// Duplicate of <see cref="UsbSerial"/> but using a different SerialPort implementation.
+	/// </summary>
 	class UsbSerial2 : IComWrapper
 	{
 		private SerialPort com = null;

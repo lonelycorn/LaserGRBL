@@ -7,6 +7,9 @@ using System.Text;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Helper class to send a message via Telegram bot
+	/// </summary>
 	public class Telegram
 	{
 
@@ -59,6 +62,9 @@ namespace LaserGRBL
 			catch (Exception ex) { }
 		}
 
+		/// <summary>
+		/// Helper class to post a web request
+		/// </summary>
 		private class MyWebClient : WebClient
 		{
 			protected override WebRequest GetWebRequest(Uri uri)

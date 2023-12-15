@@ -11,10 +11,15 @@ using System.Text.RegularExpressions;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Helper class to check new versions, download and install
+	/// </summary>
 	class GitHub
 	{
 		
-
+		/// <summary>
+		/// Wrapper class for a release version
+		/// </summary>
 		public class OnlineVersion
 		{
 			public string html_url = null;

@@ -16,6 +16,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Form for showing runtime exceptions to users.
+	/// </summary>
 	public partial class ExceptionManager : Form
 	{
 		public static GrblCore Core;

@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Form for adding/editing metadata of a Laser head module
+	/// </summary>
 	public partial class LaserLifeEdit : Form
 	{
 		LaserLifeHandler.LaserLifeCounter mTarget;

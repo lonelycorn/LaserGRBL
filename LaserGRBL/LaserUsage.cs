@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Form for managing registered laser head modules
+	/// </summary>
 	public partial class LaserUsage : Form
 	{
 		private GrblCore mCore;

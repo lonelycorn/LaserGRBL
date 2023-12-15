@@ -11,6 +11,9 @@ using LaserGRBL.CSV;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Interface for <see cref="GrblCommand"/> and <see cref="GrblMessage"/>
+	/// </summary>
 	public interface IGrblRow
 	{
 		string GetDecodedMessage();
@@ -24,6 +27,9 @@ namespace LaserGRBL
 		int ImageIndex { get; }
 	}
 	
+	/// <summary>
+	/// Helper class for loading <see cref="CsvDictionary"/> (resources in CSV format)
+	/// </summary>
 	public static class CSVD
 	{
 		public static CsvDictionary Settings = new CsvDictionary("LaserGRBL.CSV.setting_codes.v1.1.csv", 3);
@@ -89,9 +95,17 @@ namespace LaserGRBL
 		}
 	}
 
-	public partial class GrblCommand : ICloneable, IGrblRow
+    /// <summary>
+    /// "Line" in g-code, i.e. a row in a g-code program.
+    /// See https://www.linuxcnc.org/docs/2.4/html/gcode_overview.html#r1_1
+    /// </summary>
+    public partial class GrblCommand : ICloneable, IGrblRow
 	{
-		public class Element
+        /// <summary>
+        /// "Word" in g-code, i.e. a letter other than N followed by a real value.
+        /// See https://www.linuxcnc.org/docs/2.4/html/gcode_overview.html#Word
+        /// </summary>
+        public class Element
 		{
 			protected Char mCommand;
 			protected Decimal mNumber;
@@ -451,8 +465,11 @@ namespace LaserGRBL
 		public override string ToString()
 		{ return this.mLine; }
 	}
-
-	public class GrblMessage : IGrblRow
+    /// <summary>
+    /// Non g-code commands for interacting with GRBL
+    /// see: https://github.com/gnea/grbl/blob/master/doc/markdown/commands.md#grbl--commands
+    /// </summary>
+    public class GrblMessage : IGrblRow
 	{
 		public enum MessageType
 		{Startup, Config, Alarm, Feedback, Position, Others}

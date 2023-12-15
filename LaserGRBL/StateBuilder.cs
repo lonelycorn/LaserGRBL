@@ -12,7 +12,10 @@ using System.Windows;
 
 namespace LaserGRBL
 {
-	public class JogCommand : GrblCommand
+    /// <summary>
+    /// Commands for moving the laser head module; starts with "$J="
+    /// </summary>
+    public class JogCommand : GrblCommand
 	{
 		public JogCommand(string line) : base(line.Substring(3))
 		{
@@ -21,10 +24,19 @@ namespace LaserGRBL
 
 	public partial class GrblCommand
 	{
+		/// <summary>
+		/// Class hosting internal states relevant to motion, including
+		///  - current position (i.e. cumsum of x, y and z)
+		///  - latest speed (F or S)
+		///  - work coordinate offsets
+		/// </summary>
 		public class StatePositionBuilder : StateBuilder
 		{
 			bool supportPWM = Settings.GetObject("Support Hardware PWM", true);
 
+			/// <summary>
+			/// Cumsum of motion in x, y, or z
+			/// </summary>
 			public class CumulativeElement : Element
 			{
 				Element mDefault = null;
@@ -37,6 +49,7 @@ namespace LaserGRBL
 				public bool IsDefault
 				{ get { return base.Equals(mDefault); } }
 
+				// true if value is valid
 				public bool IsSettled
 				{ get { return mSettled; } }
 
@@ -54,7 +67,9 @@ namespace LaserGRBL
 				public decimal Previous
 				{ get { return mPrevious; } }
 			}
-
+			/// <summary>
+			/// Zero-order hold;
+			/// </summary>
 			public class LastValueElement : Element
 			{
 				Element mDefault = null;
@@ -79,15 +94,19 @@ namespace LaserGRBL
 				}
 			}
 
+			// cumulative distance in x, y, z
 			private CumulativeElement mCurX = new CumulativeElement("X0");
 			private CumulativeElement mCurY = new CumulativeElement("Y0");
 			private CumulativeElement mCurZ = new CumulativeElement("Z0");
 
+			// work coordinate offset for x, y, z
 			private decimal mWcoX = 0;
 			private decimal mWcoY = 0;
 			private decimal mWcoZ = 0;
 
+			// current feed rate (tool head movement speed)
 			private LastValueElement mCurF = new LastValueElement("F0");
+			// current spindle speed (laser module output power)
 			private LastValueElement mCurS = new LastValueElement("S0");
 
 			public G2G3Helper LastArcHelperResult;
@@ -249,10 +268,12 @@ namespace LaserGRBL
 			}
 		}
 
-		public class StateBuilder
+        /// <summary>
+        /// This class is able to parse a series of gcode lines and build the parser state
+		/// see: https://github.com/gnea/grbl/wiki/Grbl-v1.1-Commands#g---view-gcode-parser-state
+        /// </summary>
+        public class StateBuilder
 		{
-			//This class is able to parse a series of gcode lines and build the parser state
-			//https://github.com/gnea/grbl/wiki/Grbl-v1.1-Commands#g---view-gcode-parser-state
 
 			/*
 			Motion Mode					[G0], G1, G2, G3, G38.2, G38.3, G38.4, G38.5, G80
@@ -268,7 +289,10 @@ namespace LaserGRBL
 			Spindle State				M3, M4, [M5]
 			Coolant State				M7, M8, [M9]
 			*/
-
+			/// <summary>
+			/// Element of a "Modal Group"
+			/// Per GRBL definition, elements in the same group CANNOT be logically active at the same time.
+			/// </summary>
 			public class ModalElement : Element
 			{
 				List<Element> mOptions = new List<Element>();
@@ -287,6 +311,7 @@ namespace LaserGRBL
 				public bool IsDefault
 				{ get { return base.Equals(mDefault); } }
 
+				// return true if currently active?
 				public bool IsSettled
 				{ get { return mSettled; } }
 
@@ -365,27 +390,33 @@ namespace LaserGRBL
 			{if (element.IsSettled) list.Add(element);}
 
 		}
-
+		
+		// work coordinate offsets
 		public bool IsSetWCO
 		{ get { return G != null && G.Number == 92; } }
 
 
-
+		/// <summary>
+		/// Helper class for G2 (clockwise arc) and G3 (counter-clockwise arc)
+		/// TODO: (?) support for G18 (ZX plane), G19 (YZ plane)
+		/// </summary>
 		public class G2G3Helper
 		{
 			public double CenterX;
 			public double CenterY;
 			public double Lenght => AngularWidth * Ray;
 			public double AbsLenght => Math.Abs(Lenght);
-			public bool CW;
+			public bool CW; // clockwise
 
-			public double Ray;
+			public double Ray; // radius
 
+			// bounding box for a full circle
 			public double RectX;
 			public double RectY;
 			public double RectW;
 			public double RectH;
 
+			// actual bounding box, axis-aligned
 			public Rect BBox;
 
 			public double StartAngle;

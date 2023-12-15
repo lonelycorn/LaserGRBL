@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Form for selecting a laser head module from registered ones
+	/// </summary>
 	public partial class LaserSelector : Form
 	{
 		public LaserSelector()

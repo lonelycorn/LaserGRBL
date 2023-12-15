@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Form that shows user a reminder to wear protective gears
+	/// </summary>
 	public partial class SafetyCountdown : Form
 	{
 		int down;

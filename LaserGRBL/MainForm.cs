@@ -17,6 +17,14 @@ using static Tools.ModifyProgressBarColor;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Main form consisting of
+	///  - menu strip
+	///  - status bar
+	///  - device connection widget
+	///  - jog control widget
+	///  - preview widget
+	/// </summary>
 	public partial class MainForm : Form
 	{
 		private GrblCore Core;
@@ -1052,7 +1060,9 @@ namespace LaserGRBL
 		}
 	}
 
-
+	/// <summary>
+	/// Wrapper class for custom menubar rendering
+	/// </summary>
 	public class MMnRenderer : ToolStripProfessionalRenderer
 	{
 		public MMnRenderer() : base(new CustomMenuColor()) { }
@@ -1102,6 +1112,9 @@ namespace LaserGRBL
 				e.Graphics.FillRectangle(b, e.ConnectedArea);
 		}
 	}
+	/// <summary>
+	/// Wrapper class for custom color palette
+	/// </summary>
 	public class CustomMenuColor : ProfessionalColorTable
 	{
 		public override Color SeparatorDark

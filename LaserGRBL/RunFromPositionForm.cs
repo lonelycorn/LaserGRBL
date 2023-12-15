@@ -15,6 +15,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// For for user to choose which line to start running from
+	/// </summary>
 	public partial class RunFromPositionForm : Form
 	{
 

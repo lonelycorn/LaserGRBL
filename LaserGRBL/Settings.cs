@@ -9,7 +9,7 @@ using System;
 namespace LaserGRBL
 {
     /// <summary>
-    /// Description of Settings.
+    /// Helper class for saving/loading user settings
     /// </summary>
     public static class Settings
     {

@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Form allowing users to specify how to export g-code as files
+	/// </summary>
 	public partial class SaveOptionForm : Form
 	{
 		public SaveOptionForm()

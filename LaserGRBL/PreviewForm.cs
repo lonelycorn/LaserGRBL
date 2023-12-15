@@ -13,7 +13,7 @@ using System.Collections.Generic;
 namespace LaserGRBL
 {
 	/// <summary>
-	/// Description of PreviewForm.
+	/// UI widget for visualizing a task; for whatever reason it also handles custom buttons
 	/// </summary>
 	public partial class PreviewForm : System.Windows.Forms.UserControl
 	{
@@ -111,7 +111,10 @@ namespace LaserGRBL
             }
         }
 
-		public class CustomButtonIB : UserControls.ImageButton
+        /// <summary>
+        /// UI widget binding <see cref="CustomButton"/>  with an ImageButton
+        /// </summary>
+        public class CustomButtonIB : UserControls.ImageButton
 		{
 			private GrblCore Core;
 			private LaserGRBL.CustomButton cb;
@@ -337,6 +340,10 @@ namespace LaserGRBL
 
 		}
 
+		/// <summary>
+		/// Wrapper for FlowLayoutPanel, with customized drag/drop behaviors
+		/// This panel is used for hosting custom buttons
+		/// </summary>
 		private class MyFlowPanel : FlowLayoutPanel
 		{
 			public delegate void OrderChangedDlg(int oldindex, int newindex);

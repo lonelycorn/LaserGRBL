@@ -128,7 +128,9 @@ namespace LaserGRBL.ComWrapper
 
 	}
 
-
+	/// <summary>
+	/// Helper class for parsing address:port
+	/// </summary>
 	class IPHelper
 	{
 		public static IPEndPoint Parse(string endpointstring)

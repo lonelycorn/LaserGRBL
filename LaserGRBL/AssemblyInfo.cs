@@ -4,6 +4,10 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Resources;
 
+/// <summary>
+/// Metadata of the Assembly
+/// </summary>
+
 // Le informazioni generali relative a un assembly sono controllate dal seguente 
 // set di attributi. Per modificare le informazioni associate a un assembly
 // occorre quindi modificare i valori di questi attributi.

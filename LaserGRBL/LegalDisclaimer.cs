@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Form for showing the legal disclaimer.
+	/// </summary>
 	public partial class LegalDisclaimer : Form
 	{
 		public bool accepted = false;

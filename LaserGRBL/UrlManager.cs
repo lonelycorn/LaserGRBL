@@ -10,6 +10,9 @@
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Definition of URL's required by various features; set to null to disable the feature
+	/// </summary>
 	public static class UrlManager
 	{
 		public static string LaserStatistics = null; // FIXME: missing from repo

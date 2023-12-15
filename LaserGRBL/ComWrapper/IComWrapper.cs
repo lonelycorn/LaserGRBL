@@ -14,6 +14,9 @@ namespace LaserGRBL.ComWrapper
 	public enum WrapperType
 	{ UsbSerial, UsbSerial2, Telnet, LaserWebESP8266, Emulator }
 
+	/// <summary>
+	/// Interface for device communication
+	/// </summary>
 	public interface IComWrapper
 	{
 		void Configure(params object[] param);

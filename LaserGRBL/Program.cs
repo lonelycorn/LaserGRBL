@@ -17,7 +17,7 @@ namespace LaserGRBL
         public static Version CurrentVersion { get; private set; }
 
         /// <summary>
-        /// Punto di ingresso principale dell'applicazione.
+        /// Main entry point of the application
         /// </summary>
         [STAThread]
 		static void Main(string[] args)

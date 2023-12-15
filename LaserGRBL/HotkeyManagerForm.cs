@@ -15,6 +15,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Form for defining keyboard shortcuts
+	/// </summary>
 	public partial class HotkeyManagerForm : Form
 	{
 		private List<HotKeysManager.HotKey> mLocalList = null;

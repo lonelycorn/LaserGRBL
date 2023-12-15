@@ -15,13 +15,16 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Form allowing user to choose if they would like to resume a job, and how to resume
+	/// </summary>
 	public partial class ResumeJobForm : Form
 	{
 
 
 		bool mAllowH, mSuggestH;
 		int mExec, mSent, mSomeLine;
-
+		// wco: work coordinate offsets
 		internal static int CreateAndShowDialog(Form parent, int exec, int sent, int target, GrblCore.DetectedIssue issue, bool allowHoming, bool suggestHoming, out bool homing, bool allowWCO, bool suggestWCO, out bool wco, GPoint wcopos)
 		{
 			ResumeJobForm f = new ResumeJobForm(exec, sent, target, issue, allowHoming, suggestHoming, allowWCO, suggestWCO, wcopos);

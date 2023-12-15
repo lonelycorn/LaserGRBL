@@ -7,6 +7,9 @@ using System;
 
 namespace LaserGRBL.ComWrapper
 {
+	/// <summary>
+	/// Serial communication over USB interface
+	/// </summary>
 	class UsbSerial : IComWrapper
 	{
 		private MySerial com = null;
@@ -92,8 +95,8 @@ namespace LaserGRBL.ComWrapper
 
 			string rv = "";
 
-			if (dtr) rv += "DTR, ";
-			if (rts) rv += "RTS, ";
+			if (dtr) rv += "DTR, "; // Data terminal ready
+			if (rts) rv += "RTS, "; // Request to send
 			if (soft) rv += "Ctrl-X, ";
 
 			return rv.Trim(", ".ToCharArray());
@@ -169,7 +172,9 @@ namespace LaserGRBL.ComWrapper
 
 	}
 
-
+	/// <summary>
+	/// Wrapper for System.IO.Ports.SerialPort with a workaround for a bug.
+	/// </summary>
 	//se MySerial non dovesse bastare a calmare il problema riportato qui: https://github.com/arkypita/LaserGRBL/issues/990
 	//provare i seguenti suggerimenti:
 	//- Always call Close() followed by Dispose().

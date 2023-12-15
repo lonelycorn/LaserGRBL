@@ -14,6 +14,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Form for creating a custom button
+	/// </summary>
 	public partial class CustomButtonForm : Form
 	{
 		CustomButton inedit = null;

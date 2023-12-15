@@ -15,6 +15,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Form showing user new version, and download progress
+	/// </summary>
 	public partial class NewVersionForm : Form
 	{
 		private string mDownloadUrl;

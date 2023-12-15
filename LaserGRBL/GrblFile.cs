@@ -18,6 +18,14 @@ using System.Threading;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Class encapsulating operations around a file that contains engraving tasks
+	///  - saving/loading
+	///  - import from image file 
+	///  - visualization
+	///  - path optimization
+	///  - etc
+	/// </summary>
 	public class GrblFile : IEnumerable<GrblCommand>
 	{
 		public enum CartesianQuadrant { I, II, III, IV, Mix, Unknown }
@@ -150,12 +158,19 @@ namespace LaserGRBL
 			RiseOnFileLoaded(filename, elapsed);
 		}
 
-
+		/// <summary>
+		/// ABC; line segment with color
+		/// </summary>
 		private abstract class ColorSegment
 		{
 			public int mColor { get; set; }
 			protected int mPixLen;
-
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <param name="col">color</param>
+			/// <param name="len">length</param>
+			/// <param name="rev">reverse</param>
 			public ColorSegment(int col, int len, bool rev)
 			{
 				mColor = col;
@@ -190,7 +205,9 @@ namespace LaserGRBL
 
 			public abstract string ToGCodeNumber(ref int cumX, ref int cumY, L2LConf c);
 		}
-
+		/// <summary>
+		/// Line segment parallel to the x-axis
+		/// </summary>
 		private class XSegment : ColorSegment
 		{
 			public XSegment(int col, int len, bool rev) : base(col, len, rev) { }
@@ -205,7 +222,9 @@ namespace LaserGRBL
 					return string.Format("X{0} {1}", formatnumber(cumX, c.oX, c), Fast(c) ? c.lOff : c.lOn);
 			}
 		}
-
+		/// <summary>
+		/// Line segment parallel to the y-axis
+		/// </summary>
 		private class YSegment : ColorSegment
 		{
 			public YSegment(int col, int len, bool rev) : base(col, len, rev) { }
@@ -220,7 +239,9 @@ namespace LaserGRBL
 					return string.Format("Y{0} {1}", formatnumber(cumY, c.oY, c), Fast(c) ? c.lOff : c.lOn);
 			}
 		}
-
+		/// <summary>
+		/// Diagnoal line segments? +X-Y
+		/// </summary>
 		private class DSegment : ColorSegment
 		{
 			public DSegment(int col, int len, bool rev) : base(col, len, rev) { }
@@ -236,7 +257,10 @@ namespace LaserGRBL
 					return string.Format("X{0} Y{1} {2}", formatnumber(cumX, c.oX, c), formatnumber(cumY, c.oY, c), Fast(c) ? c.lOff : c.lOn);
 			}
 		}
-
+		/// <summary>
+		/// Vertical separator.
+		/// FIXME: why is lenth 1?
+		/// </summary>
 		private class VSeparator : ColorSegment
 		{
 			public VSeparator() : base(0, 1, false) { }
@@ -253,7 +277,10 @@ namespace LaserGRBL
 			public override bool IsSeparator
 			{ get { return true; } }
 		}
-
+		/// <summary>
+		/// Horizontal separator.
+		/// FIXME: why is length 1?
+		/// </summary>
 		private class HSeparator : ColorSegment
 		{
 			public HSeparator() : base(0, 1, false) { }
@@ -298,7 +325,7 @@ namespace LaserGRBL
 			dir == RasterConverter.ImageProcessor.Direction.NewDiagonalCross ||
 			dir == RasterConverter.ImageProcessor.Direction.NewSquares;
 		}
-
+		// Potrace is a tool that can trace th eoutlines of a bitmap image and convert it into a set of smooth, scalable curves.
 		public void LoadImagePotrace(Bitmap bmp, string filename, bool UseSpotRemoval, int SpotRemoval, bool UseSmoothing, decimal Smoothing, bool UseOptimize, decimal Optimize, bool useOptimizeFast, L2LConf c, bool append, GrblCore core)
 		{
 			skipcmd = Settings.GetObject("Disable G0 fast skip", false) ? "G1" : "G0";
@@ -436,7 +463,9 @@ namespace LaserGRBL
 			if (OnFileLoading != null)
 				OnFileLoading(0, filename);
 		}
-
+		/// <summary>
+		/// Some general configuration for "Line to Line"
+		/// </summary>
 		public class L2LConf
 		{
 			public double res;
@@ -748,7 +777,7 @@ namespace LaserGRBL
 
 			prevCol = col;
 		}
-
+		// Run path optimization in multi-thread environment
 		private List<List<Curve>> ParallelOptimizePaths(List<List<Curve>> list, double changecost)
 		{
 			if (list == null || list.Count <= 1)
@@ -954,7 +983,7 @@ namespace LaserGRBL
 					return CartesianQuadrant.Mix;
 			}
 		}
-
+		// Visualize the file's content on a canvas
 		internal void DrawOnGraphics(Graphics g, Size size)
 		{
 			if (!mRange.MovingRange.ValidRange) return;
@@ -1303,11 +1332,19 @@ namespace LaserGRBL
 
 
 
-
+	/// <summary>
+	/// Range of motion
+	/// </summary>
 	public class ProgramRange
 	{
+		/// <summary>
+		/// Range of X and Y movement
+		/// </summary>
 		public class XYRange
 		{
+			/// <summary>
+			/// Range of a value [min, max]
+			/// </summary>
 			public class Range
 			{
 				public decimal Min;
@@ -1376,7 +1413,10 @@ namespace LaserGRBL
 				}
 			}
 		}
-
+		
+		/// <summary>
+		/// Range of "spindle"; for laser head, this is repurporsed as output power
+		/// </summary>
 		public class SRange
 		{
 			public class Range

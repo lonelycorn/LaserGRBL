@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace LaserGRBL
 {
 	/// <summary>
-	/// Description of ConnectLogForm.
+	/// UI widget for handling communication with device
 	/// </summary>
 	public partial class ConnectLogForm : System.Windows.Forms.UserControl
 	{

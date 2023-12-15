@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Form showing the splash image
+	/// </summary>
 	public partial class SplashScreenForm : Form
 	{
 		private string mVersion;

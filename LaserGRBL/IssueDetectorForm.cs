@@ -15,6 +15,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Form informing user that something is wrong with GRBL (low-level firmware)
+	/// </summary>
 	public partial class IssueDetectorForm : Form
 	{
 		public IssueDetectorForm()

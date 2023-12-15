@@ -5,7 +5,10 @@ using System.Text;
 
 namespace LaserGRBL
 {
-	public static class SincroStart
+    /// <summary>
+    /// Helper class for running in "synchronous mode", i.e. Wait for the execution of each command before sending the next command 
+    /// </summary>
+    public static class SincroStart
 	{
 		static System.Threading.ManualResetEvent EX;	//Exit flag
 		static System.Threading.EventWaitHandle EV;		//Event flag

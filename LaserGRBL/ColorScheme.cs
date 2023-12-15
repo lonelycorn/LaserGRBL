@@ -12,6 +12,9 @@ using System.Drawing;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Basic implementation of "themes", i.e. different color palettes
+	/// </summary>
 	class ColorScheme
 	{
 		public enum Scheme

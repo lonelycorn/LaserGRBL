@@ -12,6 +12,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Helper class hosting all keyboard shortcuts
+	/// </summary>
 	[Serializable]
 	public class HotKeysManager : List<HotKeysManager.HotKey>
 	{
@@ -21,6 +24,9 @@ namespace LaserGRBL
 		[NonSerialized] List<int> mCustomButtonPressed;
 		[NonSerialized] private bool mJogKeyRequested = false;
 
+		/// <summary>
+		/// Class representing a keyboard shortcut: key-combo --> action
+		/// </summary>
 		[Serializable]
 		public class HotKey : ICloneable
 		{

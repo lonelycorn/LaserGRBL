@@ -15,6 +15,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Form for saving & loading configs
+	/// </summary>
 	public partial class GrblConfig : Form
 	{
 		private GrblCore Core;

@@ -56,6 +56,12 @@ using System.Threading.Tasks;
 //using System.IO;            //debugging with streamReader & StreamWriter
 //using System.Windows.Forms; //debugging to clipboard
 
+/**
+ * a geometric clipping library that provides functionality for polygon clipping and 
+ * operations on geometric shapes. It allows you to perform operations such as union,
+ * intersection, difference, and exclusive-or (XOR) on polygons.
+ */
+
 namespace ClipperLib
 {
 

@@ -16,6 +16,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Form allowing user to view and update settings
+	/// </summary>
 	public partial class SettingsForm : Form
 	{
         private GrblCore Core;

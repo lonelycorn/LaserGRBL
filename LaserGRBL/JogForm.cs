@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+    /// <summary>
+    /// Form allowing users to control the movement of the toolhead via buttons
+    /// </summary>
 	public partial class JogForm : System.Windows.Forms.UserControl
 	{
 		GrblCore Core;
@@ -105,7 +108,9 @@ namespace LaserGRBL
 		}
 
 	}
-
+    /// <summary>
+    /// TrackBar that provides logarithm scale
+    /// </summary>
     public class StepBar : System.Windows.Forms.TrackBar
     {
         decimal[] values = { 0.1M, 0.2M, 0.5M, 1, 2, 5, 10, 20, 50, 100, 200 };
@@ -143,7 +148,9 @@ namespace LaserGRBL
         }
     }
 
-
+    /// <summary>
+    /// ImageButton with direction for movement
+    /// </summary>
     public class DirectionButton : UserControls.ImageButton
 	{
 		private GrblCore.JogDirection mDir = GrblCore.JogDirection.N;
@@ -163,6 +170,9 @@ namespace LaserGRBL
 		}
 	}
 
+    /// <summary>
+    /// ImageButton with both direction and distance for movement
+    /// </summary>
     public class DirectionStepButton : DirectionButton
     {
         private decimal mStep = 1.0M;

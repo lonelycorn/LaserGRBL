@@ -15,6 +15,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Form for showing the GPL license
+	/// </summary>
 	public partial class LicenseForm : Form
 	{
 		public LicenseForm()

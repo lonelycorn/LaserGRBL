@@ -15,10 +15,11 @@ using System.Linq;
 
 namespace LaserGRBL
 {
-    // this class is used to collect anonymous usage statistics
-    // statistics will be used to provide better versions
-    // focusing on the development of the most used features
-    // and translation for most used languages
+    /// <summary>
+    /// this class is used to collect anonymous usage statistics.
+    /// statistics will be used to provide better versions focusing on the development of 
+    /// the most used features and translation for most used languages
+    /// </summary>
 
     [Serializable]
     public class UsageStats
@@ -27,7 +28,9 @@ namespace LaserGRBL
 		[Obsolete()] private Firmware Firmware; //non rimuovere, serve per compatibilità!
 #pragma warning restore 0169
 
-
+        /// <summary>
+        /// Class hosting usage counts
+        /// </summary>
 		[Serializable]
         public class UsageCounters
         {
@@ -236,6 +239,9 @@ namespace LaserGRBL
             }
         }
 
+        /// <summary>
+        /// Class holding response from usage stats server
+        /// </summary>
 		public class UsageStatsRV
 		{
 			public int UpdateResult = -1;
@@ -244,6 +250,9 @@ namespace LaserGRBL
 			[IgnoreDataMember] public bool Success => UpdateResult == 1;
 		}
 
+        /// <summary>
+        /// Helper class for adding/removing server messages
+        /// </summary>
 		[Serializable]
 		public class MessageManager
 		{
@@ -267,7 +276,9 @@ namespace LaserGRBL
 			internal MessageData GetMessage(MessageData.MessageTypes type)
 			{ return Messages.FirstOrDefault(M => M.Type == type && !ClearedIDs.Contains(M.ID)); }
 		}
-
+        /// <summary>
+        /// Actual message from server
+        /// </summary>
 		[Serializable]
 		public class MessageData
 		{
@@ -297,7 +308,10 @@ namespace LaserGRBL
 			[IgnoreDataMember] private int iType { get => string.IsNullOrEmpty(type) ? -1 : int.Parse(type); }
 		}
 
-		public class MyWebClient : WebClient
+        /// <summary>
+        /// Helper class to post a web request
+        /// </summary>
+        public class MyWebClient : WebClient
         {
             protected override WebRequest GetWebRequest(Uri uri)
             {
