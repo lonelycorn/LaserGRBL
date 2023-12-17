@@ -13,6 +13,9 @@ using WebSocketSharp;
 
 namespace LaserGRBL.ComWrapper
 {
+	/// <summary>
+	/// Similar to <see cref="Telnet"/> but with an explict buffer
+	/// </summary>
 	class LaserWebESP8266 : IComWrapper
 	{
 

@@ -13,6 +13,9 @@ using System.Net;
 
 namespace LaserGRBL.ComWrapper
 {
+	/// <summary>
+	/// Communication over TCP-IP
+	/// </summary>
 	class Telnet : IComWrapper
 	{
 		private string mAddress;

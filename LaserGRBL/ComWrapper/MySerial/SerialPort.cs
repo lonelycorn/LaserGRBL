@@ -26,6 +26,9 @@ using System.Text;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 
+/**
+ * Adapted from https://github.com/jcurl/RJCP.DLL.SerialPortStream/
+ */
 namespace MySerialPort
 {
 	[MonitoringDescription ("")]

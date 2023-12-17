@@ -10,6 +10,11 @@ using System.Diagnostics;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Helper class to do autotracing (pixel image to vector image)
+	///  - using an external binary, autotrace.exe
+	///  - using SvgLibrary (probably copy-pasted from some Microsoft repo)
+	/// </summary>
 	public class Autotrace
 	{
 		public static string TempPath { get { return $"{GrblCore.DataPath}\\Autotrace\\"; } }
