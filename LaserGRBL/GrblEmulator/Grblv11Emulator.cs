@@ -11,7 +11,10 @@ using System.Text;
 
 namespace LaserGRBL.GrblEmulator
 {
-
+	/// <summary>
+	/// Basic emulation of GRBL firmware.
+	/// Only responds to basic commands with placeholder messages. <see cref="ComWrapper.Emulator"/>
+	/// </summary>
 	public class Grblv11Emulator
 	{
 		private const bool EMULATE_MISSING_OK = false;

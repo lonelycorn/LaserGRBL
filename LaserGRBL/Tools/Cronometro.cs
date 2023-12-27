@@ -11,6 +11,9 @@ using System.Text;
 
 namespace Tools
 {
+	/// <summary>
+	/// Helper class for calculating elapsed time since application start
+	/// </summary>
 	public class TimingBase
 	{
 
@@ -29,6 +32,9 @@ namespace Tools
 
 	}
 
+	/// <summary>
+	/// Helper class for calculating how much time has elapsed since event start
+	/// </summary>
 	public class ElapsedFromEvent
 	{
 		//necessario xè non è sufficiente usare starttime
@@ -107,6 +113,9 @@ namespace Tools
 		{get { return times; }}
 	}
 
+	/// <summary>
+	/// Helper class to manage a periodic event; polling-based
+	/// </summary>
 	public class PeriodicEventTimer
 	{
 		private TimeSpan m_period;

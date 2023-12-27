@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL.SvgConverter
 {
+	/// <summary>
+	/// Form for visualizing SVG images in 2 modes: wireframe, as-is
+	/// </summary>
 	public partial class SvgModeForm : Form
 	{
 		public Mode Result { get; private set; } = Mode.None;

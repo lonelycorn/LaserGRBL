@@ -6,6 +6,9 @@ using System.Text;
 
 namespace Tools
 {
+	/// <summary>
+	/// Helper class for converting text to encrypted base64 string
+	/// </summary>
 	public static class Protector
 	{
 		/// <summary>

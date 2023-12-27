@@ -10,7 +10,7 @@ using System.Text;
 namespace Tools
 {
 	/// <summary>
-	/// Description of WordWrap.
+	/// Helper class to break strings at desired line width
 	/// </summary>
 	public class WordWrap
 	{

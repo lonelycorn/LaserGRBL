@@ -6,7 +6,9 @@ using System.Linq;
 namespace LaserGRBL.PSHelper
 {
 
-
+    /// <summary>
+    /// Class holding material-specific laser options
+    /// </summary>
     partial class MaterialDB
     {
         partial class MaterialsDataTable

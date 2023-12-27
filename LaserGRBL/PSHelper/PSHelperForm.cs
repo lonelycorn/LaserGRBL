@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL.PSHelper
 {
+	/// <summary>
+	/// Form for visualizing vendor suggested material-specific laser options
+	/// </summary>
 	public partial class PSHelperForm : Form
 	{
 		MaterialDB.MaterialsDataTable data = GrblCore.MaterialDB.Materials;

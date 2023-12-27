@@ -11,6 +11,9 @@ using System.Text;
 
 namespace LaserGRBL
 {
+    /// <summary>
+    /// Specialization of <see cref="GrblCore"/> for Marlin Firmware
+    /// </summary>
     public class MarlinCore : GrblCore
     {
         public MarlinCore(System.Windows.Forms.Control syncroObject, PreviewForm cbform, JogForm jogform) : base(syncroObject, cbform, jogform)

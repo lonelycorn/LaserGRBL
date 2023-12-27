@@ -17,6 +17,9 @@ using System.Drawing.Drawing2D;
 
 namespace Base.Drawing
 {
+	/// <summary>
+	/// Helper functions to process image in color space
+	/// </summary>
 	public static class ImageTransform
 	{
 

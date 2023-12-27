@@ -18,6 +18,9 @@ using System.IO;
 
 namespace LaserGRBL.RasterConverter
 {
+	/// <summary>
+	/// Class actually implementing image processing algorithms
+	/// </summary>
 	public class ImageTransform
 	{
 		public static Bitmap ResizeImage(Image image, Size size, bool killalfa, InterpolationMode interpolation)

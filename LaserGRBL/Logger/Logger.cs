@@ -9,6 +9,9 @@ using System.Text;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Global singleton for logging session messages using <see cref="AsyncLogFile"/>
+	/// </summary>
 	static class Logger
 	{
 		private static AsyncLogFile file = new AsyncLogFile(System.IO.Path.Combine(GrblCore.DataPath, "sessionlog.txt"), 1000);

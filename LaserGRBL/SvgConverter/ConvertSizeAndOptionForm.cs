@@ -12,7 +12,7 @@ using System.Windows.Forms;
 namespace LaserGRBL.SvgConverter
 {
 	/// <summary>
-	/// Description of ConvertSizeAndOptionForm.
+	/// Form for specifying laser options when generating g-code from SVG images
 	/// </summary>
 	public partial class SvgToGCodeForm : Form
 	{

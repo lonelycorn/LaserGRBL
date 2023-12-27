@@ -16,7 +16,9 @@ using System.Security.AccessControl;
 
 namespace Tools
 {
-
+	/// <summary>
+	/// Helper class to (de)serialize objects in custom format
+	/// </summary>
 	public class Serializer
 	{
 		//private static int counter = 0;

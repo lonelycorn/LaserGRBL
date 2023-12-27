@@ -12,6 +12,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL.WiFiDiscovery
 {
+	/// <summary>
+	/// Form allowing user to scan & connect to a remote machine
+	/// </summary>
 	public partial class DiscoveryForm : Form
 	{
 		String RV;

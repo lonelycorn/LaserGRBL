@@ -13,7 +13,7 @@ using System.Collections.Generic;
 namespace LaserGRBL.UserControls
 {
 	/// <summary>
-	/// Description of GrblTextBox.
+	/// <see cref="PlaceholderTextBox"/> but with a history
 	/// </summary>
 	public partial class GrblTextBox : PlaceholderTextBox
 	{

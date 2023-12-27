@@ -15,6 +15,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL.RasterConverter
 {
+	/// <summary>
+	/// Form allowing user to set laser resoliution (steps/mm, lines/mm)
+	/// </summary>
 	public partial class ResolutionHelperForm : Form
 	{
 		double mRetVal;

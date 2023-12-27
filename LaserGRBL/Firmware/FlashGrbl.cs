@@ -15,6 +15,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL
 {
+	/// <summary>
+	/// Form for flashing GRBL firmware using avrdude
+	/// </summary>
 	public partial class FlashGrbl : Form
 	{
 		private const string SELECT = "--- select custom firmware ---";
@@ -145,6 +148,7 @@ namespace LaserGRBL
 			{ DialogResult = DialogResult.Cancel; }
 		}
 
+		// choose which board (either Arduino Uno, or Nano)
 		private void CbTarget_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (CbTarget.SelectedIndex == 0)

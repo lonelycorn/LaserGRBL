@@ -11,6 +11,9 @@ using System.Text;
 
 namespace LaserGRBL.UserControls
 {
+	/// <summary>
+	/// Combo box with option to trim value string
+	/// </summary>
 	public class EnumComboBox : System.Windows.Forms.ComboBox
 	{
 

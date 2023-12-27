@@ -14,7 +14,9 @@ using System.Drawing.Drawing2D;
 
 namespace LaserGRBL.UserControls
 {
-
+	/// <summary>
+	/// Button with an image and an optional alternative image.
+	/// </summary>
 	[System.ComponentModel.DefaultEvent("Click")]
 	public partial class ImageButton : System.Windows.Forms.UserControl
 	{

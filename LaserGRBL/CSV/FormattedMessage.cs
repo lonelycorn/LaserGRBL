@@ -10,6 +10,9 @@ using System.Text;
 
 namespace LaserGRBL.CSV
 {
+	/// <summary>
+	/// Helper class providing localized & typed access to <see cref="StringList"/>
+	/// </summary>
 	public class FormattedMessage
 	{
 		public enum DTFormat
@@ -174,6 +177,9 @@ namespace LaserGRBL.CSV
 		}
 	}
 
+	/// <summary>
+	/// Helper class to parse a delimited string
+	/// </summary>
 	public class StringList : System.Collections.Generic.IList<string>
 	{
 		private string esc = "\\"; //escape symbol

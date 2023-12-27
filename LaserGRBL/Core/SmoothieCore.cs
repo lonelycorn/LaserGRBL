@@ -11,6 +11,9 @@ using System.Text;
 
 namespace LaserGRBL
 {
+    /// <summary>
+    /// Specialization of <see cref="GrblCore"/> for Smoothie FW
+    /// </summary>
     public class SmoothieCore : GrblCore
     {
         public SmoothieCore(System.Windows.Forms.Control syncroObject, PreviewForm cbform, JogForm jogform) : base(syncroObject, cbform, jogform)

@@ -11,6 +11,9 @@ using System.Text;
 
 namespace LaserGRBL.ComWrapper
 {
+    /// <summary>
+    /// Global singleton for logging serial communication using <see cref="AsyncLogFile"/>
+    /// </summary>
     public static class ComLogger
     {
 		private static string lockstr = "--- TX RX LOG LOCK ---";

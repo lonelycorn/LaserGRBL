@@ -7,6 +7,9 @@ using LaserGRBL;
 
 namespace Tools
 {
+    /// <summary>
+    /// Poor-man's attempt to save current working image to a file
+    /// </summary>
     public static class Project
     {
         #region Private fields

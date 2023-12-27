@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL.PSHelper
 {
+	/// <summary>
+	/// Form for editing material-specific laser options.
+	/// </summary>
 	public partial class PSEditorForm : Form
 	{
 		public PSEditorForm()

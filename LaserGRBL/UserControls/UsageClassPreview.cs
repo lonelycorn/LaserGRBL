@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL.UserControls
 {
+	/// <summary>
+	/// Visualization of histogram of laser usage
+	/// </summary>
 	public partial class UsageClassPreview : UserControl
 	{
 		private LaserLifeHandler.LaserLifeCounter mLLC;

@@ -13,6 +13,9 @@ using WebSocketSharp.Server;
 
 namespace LaserGRBL.GrblEmulator
 {
+	/// <summary>
+	/// Global singleton for <see cref="GrblWebSocketEmulator"/>
+	/// </summary>
 	class WebSocketEmulator
 	{
 		private static WebSocketServer srv;
@@ -39,7 +42,9 @@ namespace LaserGRBL.GrblEmulator
 			}
 		}
 
-
+		/// <summary>
+		/// Implementing <see cref="WebSocketBehavior"/> using <see cref="Grblv11Emulator"/>
+		/// </summary>
 		private class GrblWebSocketEmulator : WebSocketBehavior
 		{
 			private Grblv11Emulator emu;

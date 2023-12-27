@@ -13,6 +13,9 @@ using System.Net;
 
 namespace LaserGRBL.ComWrapper
 {
+	/// <summary>
+	/// Communication interface for <see cref="GrblEmulator"/>
+	/// </summary>
 	class Emulator : IComWrapper
 	{
 		private LaserGRBL.GrblEmulator.Grblv11Emulator emu;

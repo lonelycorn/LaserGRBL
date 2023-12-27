@@ -5,6 +5,9 @@ using System.Runtime.InteropServices;
 
 namespace Tools
 {
+	/// <summary>
+	/// Helper class to modify progress bar color
+	/// </summary>
 	public static class ModifyProgressBarColor
 	{
 		[DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
@@ -17,6 +20,9 @@ namespace Tools
 		}
 	}
 
+	/// <summary>
+	/// Helper class to disable screensaver and sleep mode
+	/// </summary>
 	class WinAPI
 	{
 

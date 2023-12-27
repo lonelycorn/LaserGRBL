@@ -12,7 +12,10 @@ using System.IO;
 namespace LaserGRBL.CSV
 {
 	/// <summary>
-	/// Description of CsvDictionary.
+	/// Helper class to convert settings (stored in CSV format) into a dictionary with a number of fields, e.g.:
+	///   - Parameter
+	///   - Unit,
+	///   - Description
 	/// </summary>
 	public class CsvDictionary 
 	{

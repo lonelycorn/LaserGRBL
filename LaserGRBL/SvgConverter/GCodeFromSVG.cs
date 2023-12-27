@@ -22,6 +22,9 @@ using System.Globalization;
 
 namespace LaserGRBL.SvgConverter
 {
+	/// <summary>
+	/// Helper class for converting SVG images to g-code
+	/// </summary>
 	class GCodeFromSVG
 	{
 		private static float factor_In2Px = 96;

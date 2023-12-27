@@ -12,7 +12,8 @@ using System.Windows.Forms;
 namespace LaserGRBL.RasterConverter
 {
 	/// <summary>
-	/// Description of ConvertSizeAndOptionForm.
+	/// Form for configuring size and laser options
+	/// This is step 2 of "import image and laser it"
 	/// </summary>
 	public partial class ConvertSizeAndOptionForm : Form
 	{
@@ -22,6 +23,9 @@ namespace LaserGRBL.RasterConverter
 		bool supportPWM = Settings.GetObject("Support Hardware PWM", true);
 
 		public ComboboxItem[] LaserOptions = new ComboboxItem[] { new ComboboxItem("M3 - Constant Power", "M3"), new ComboboxItem("M4 - Dynamic Power", "M4") };
+		/// <summary>
+		/// Key-value pair for combo box
+		/// </summary>
 		public class ComboboxItem
 		{
 			public string Text { get; set; }

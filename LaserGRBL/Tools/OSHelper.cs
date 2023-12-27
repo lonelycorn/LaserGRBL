@@ -9,6 +9,9 @@ using System.Text.RegularExpressions;
 
 namespace Tools
 {
+	/// <summary>
+	/// Convenience functions for OS-related
+	/// </summary>
 	public class OSHelper
 	{
 		public static bool Is64BitProcess = OSVersionInfo.ProgramBits == OSVersionInfo.SoftwareArchitecture.Bit64;

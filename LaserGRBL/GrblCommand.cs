@@ -28,7 +28,7 @@ namespace LaserGRBL
 	}
 	
 	/// <summary>
-	/// Helper class for loading <see cref="CsvDictionary"/> (resources in CSV format)
+	/// Helper class for loading and storing <see cref="CsvDictionary"/> (resources in CSV format)
 	/// </summary>
 	public static class CSVD
 	{

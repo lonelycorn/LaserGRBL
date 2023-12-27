@@ -15,6 +15,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL.GrblEmulator
 {
+	/// <summary>
+	/// Form for visualizing Emulator execution
+	/// </summary>
 	public partial class EmulatorUI : Form
 	{
 		private static EmulatorUI istance;

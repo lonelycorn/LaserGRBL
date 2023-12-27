@@ -9,7 +9,7 @@ using System;
 namespace Tools
 {
 	/// <summary>
-	/// Description of MathHelper.
+	/// Convenince functions for math
 	/// </summary>
 	public static class MathHelper
 	{
@@ -23,6 +23,9 @@ namespace Tools
 
 	}
 
+	/// <summary>
+	/// Helper class for calculating major and minor ticks for graph axes
+	/// </summary>
 	public class RulerStepCalculator
 	{
 		private double[] mtable = new double[] { 1.0, 2.0, 5.0, 10.0 };

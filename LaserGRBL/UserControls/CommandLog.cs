@@ -12,6 +12,9 @@ using LaserGRBL;
 
 namespace LaserGRBL.UserControls
 {
+	/// <summary>
+	/// Control for showing g-code commands
+	/// </summary>
 	public partial class CommandLog : UserControl
 	{
 		GrblCore mCom;

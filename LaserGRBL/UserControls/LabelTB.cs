@@ -14,6 +14,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL.UserControls
 {
+	/// <summary>
+	/// Track bar (aka slider) with a label and a reset button
+	/// </summary>
 	public partial class LabelTB : UserControl
 	{
 		GrblCore Core;

@@ -6,6 +6,9 @@ using System.Text;
 
 namespace Tools
 {
+	/// <summary>
+	/// Helper class to set OS tick resultion
+	/// </summary>
 	public class TaskScheduler
 	{
 

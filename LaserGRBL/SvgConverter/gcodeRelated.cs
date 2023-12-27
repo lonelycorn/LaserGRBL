@@ -31,6 +31,9 @@ using System.Windows.Forms;
 
 namespace LaserGRBL.SvgConverter
 {
+	/// <summary>
+	/// Convenience functions for actually generating g-code
+	/// </summary>
 	public static class gcode
 	{
 		private static string formatCode = "0";

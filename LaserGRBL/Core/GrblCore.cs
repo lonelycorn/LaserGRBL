@@ -23,7 +23,7 @@ namespace LaserGRBL
 	{ Grbl, Smoothie, Marlin, VigoWork }
 
 	/// <summary>
-	/// Description of CommandThread.
+	/// Class managing communication with GRBL FW, along with many irrelevant stuff
 	/// </summary>
 	public class GrblCore
 	{
@@ -34,10 +34,13 @@ namespace LaserGRBL
 		public static string GCODE_STD_PASSES = ";(Uncomment if you want to sink Z axis)\r\n;G91 (use relative coordinates)\r\n;G0 Z-1 (sinks the Z axis, 1mm)\r\n;G90 (use absolute coordinates)";
 		public static string GCODE_STD_FOOTER = "G0 X0 Y0 Z0 (move back to origin)";
 
+		/// <summary>
+		/// Settings for the communication thread with GRBL FW
+		/// </summary>
 		[Serializable]
 		public class ThreadingMode
 		{
-			public readonly int StatusQuery;
+			public readonly int StatusQuery; // interval for querying FW, in milliseconds
 			public readonly int TxLong;
 			public readonly int TxShort;
 			public readonly int RxLong;
@@ -87,6 +90,9 @@ namespace LaserGRBL
 			MachineAlarm = 5,
 		}
 
+		/// <summary>
+		/// Machine status
+		/// </summary>
 		public enum MacStatus
 		{ Disconnected, Connecting, Idle, Run, Hold, Door, Home, Alarm, Check, Jog, Queue, Cooling, AutoHold, Tool } // "Tool" added in GrblHal
 
@@ -96,6 +102,9 @@ namespace LaserGRBL
 		public enum StreamingMode
 		{ Buffered, Synchronous, RepeatOnError }
 
+		/// <summary>
+		/// Class holding metadata of GRBL FW
+		/// </summary>
 		[Serializable]
 		public class GrblVersionInfo : IComparable, ICloneable
 		{
@@ -278,7 +287,7 @@ namespace LaserGRBL
 		protected int mUsedBuffer;
 
 		private const int DEFAULT_BUFFER_SIZE = 127;
-		private int mAutoBufferSize = DEFAULT_BUFFER_SIZE;
+		private int mAutoBufferSize = DEFAULT_BUFFER_SIZE; // buffer size of the FW
 		private GPoint mMPos;
 		private GPoint mWCO;
 		private int mGrblBlocks = -1;
@@ -294,6 +303,7 @@ namespace LaserGRBL
 		private float mCurF;
 		private float mCurS;
 
+		// override configs
 		private int mCurOvLinear;
 		private int mCurOvRapids;
 		private int mCurOvPower;
@@ -638,6 +648,7 @@ namespace LaserGRBL
 				Logger.LogMessage("OpenFile", "Open {0}", filename);
 				Settings.SetObject("Core.LastOpenFile", filename);
 
+				// TODO: support DXF
 				if (ImageExtensions.Contains(System.IO.Path.GetExtension(filename).ToLowerInvariant())) //import raster image
 				{
 					try
@@ -1045,7 +1056,9 @@ namespace LaserGRBL
 		}
 
 
-
+		/// <summary>
+		/// Exception when reading configs
+		/// </summary>
 		public class ReadConfigCountException : Exception
 		{
 			public ReadConfigCountException(string message) : base(message)
@@ -1053,6 +1066,9 @@ namespace LaserGRBL
 			}
 		}
 
+		/// <summary>
+		/// Exception when writing configs
+		/// </summary>
 		public class WriteConfigException : Exception
 		{
 			private System.Collections.Generic.List<IGrblRow> ErrorLines = new System.Collections.Generic.List<IGrblRow>();
@@ -1905,6 +1921,7 @@ namespace LaserGRBL
 				mQueuePtr.Dequeue();
 		}
 
+		// Return true if buffer has enough space to hold the command
 		protected virtual bool HasSpaceInBuffer(GrblCommand command)
 		{ return (mUsedBuffer + command.SerialData.Length) <= BufferSize; }
 
@@ -2254,19 +2271,19 @@ namespace LaserGRBL
 
 					for (int i = 1; i < arr.Length; i++)
 					{
-						if (arr[i].StartsWith("Ov:"))
+						if (arr[i].StartsWith("Ov:")) // overrides
 							ParseOverrides(arr[i]);
-						else if (arr[i].StartsWith("Bf:"))
+						else if (arr[i].StartsWith("Bf:")) // buffer state
 							ParseBf(arr[i]);
-						else if (arr[i].StartsWith("WPos:"))
-							ParseWPos(arr[i]);
-						else if (arr[i].StartsWith("MPos:"))
-							ParseMPos(arr[i]);
-						else if (arr[i].StartsWith("WCO:"))
+						else if (arr[i].StartsWith("WPos:")) // work coordinate position
+                            ParseWPos(arr[i]);
+						else if (arr[i].StartsWith("MPos:")) // machine coordinate position
+                            ParseMPos(arr[i]);
+						else if (arr[i].StartsWith("WCO:")) // work coordinate offset
 							ParseWCO(arr[i]);
-						else if (arr[i].StartsWith("FS:"))
+						else if (arr[i].StartsWith("FS:")) // current feed speed (varibale spindle)
 							ParseFS(arr[i]);
-						else if (arr[i].StartsWith("F:"))
+						else if (arr[i].StartsWith("F:")) // current feed speed
 							ParseF(arr[i]);
 					}
 				}
@@ -2792,6 +2809,7 @@ namespace LaserGRBL
 				return mHotKeyManager.ManageHotKeys(parent, keys);
 		}
 
+		// hot-key
 		internal void HKConnectDisconnect()
 		{
 			if (IsConnected)
@@ -2995,12 +3013,15 @@ namespace LaserGRBL
 		public int FailedConnectionCount => mFailedConnection;
 	}
 
+	/// <summary>
+	/// Helper class to track stats of jobs
+	/// </summary>
 	public class TimeProjection
 	{
 		private TimeSpan mETarget;
 		private TimeSpan mEProgress;
 
-
+		// milliseconds
 		private long mStart;        //Start Time
 		private long mEnd;          //End Time
 		private long mGlobalStart;  //Global Start (multiple pass)
@@ -3324,7 +3345,9 @@ namespace LaserGRBL
 		private const decimal MAX_CONFIG_SIZE = 2000000;
 		private const decimal MAX_CONFIG_ACCEL = 2000000;
 
-
+		/// <summary>
+		/// Key-value pari
+		/// </summary>
 		public class GrblConfParam : ICloneable
 		{
 			private int mNumber;
@@ -3588,9 +3611,15 @@ namespace LaserGRBL
 
 
 
+	/// <summary>
+	/// Key-value store for relevant configurations. Superseded by <see cref="GrblConfST"/>
+	/// </summary>
 	[Serializable, Obsolete]
 	public class GrblConf : IEnumerable<KeyValuePair<int, decimal>>
 	{
+		/// <summary>
+		/// Key-value pair
+		/// </summary>
 		[Obsolete]
 		public class GrblConfParam : ICloneable
 		{
@@ -3804,6 +3833,9 @@ namespace LaserGRBL
 		}
 	}
 
+	/// <summary>
+	/// Point in 3D Cartesian space
+	/// </summary>
 	public struct GPoint
 	{
 		public float X, Y, Z;
@@ -3852,9 +3884,14 @@ namespace LaserGRBL
 		}
 	}
 
-
+	/// <summary>
+	/// Singleton class managing metadata of laser head modules
+	/// </summary>
 	public static class LaserLifeHandler
 	{
+		/// <summary>
+		/// List of <see cref="LaserLifeCounter"/> with additional metadata
+		/// </summary>
 		[Serializable]
 		public class ListLLC : List<LaserLifeCounter>
 		{
@@ -3890,6 +3927,9 @@ namespace LaserGRBL
 		private static long mLastSave;
 		private static string mLLCFileName;
 
+		/// <summary>
+		/// Class holding metadata of a laser head module, and tracking usage life
+		/// </summary>
 		[Serializable]
 		public class LaserLifeCounter : IDeserializationCallback
 		{
@@ -3911,7 +3951,7 @@ namespace LaserGRBL
 			private TimeSpan mTimeInRun;
 			private TimeSpan mTimeUsageNormalizedPower;
 			private TimeSpan mTimeUsageNonZero;
-			private TimeSpan[] mTimeClasses;
+			private TimeSpan[] mTimeClasses; // histogram, 10 bins 0~10%, 10%~20%, etc
 
 			public DateTime? PurchaseDate { get => mPurchaseDate; set => mPurchaseDate = value; }
 			public DateTime? MonitoringDate { get => mMonitoringDate; set => mMonitoringDate = value; }
@@ -4267,6 +4307,9 @@ namespace LaserGRBL
 				return HttpUtility.JavaScriptStringEncode(o != null ? o.ToString() : "", true);
 		}
 
+		/// <summary>
+		/// Class holding the response from the server
+		/// </summary>
 		public class RealDoSendRV
 		{
 			public int UpdateResult = -1;

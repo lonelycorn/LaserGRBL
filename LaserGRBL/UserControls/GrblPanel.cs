@@ -15,13 +15,13 @@ namespace LaserGRBL.UserControls
 	public partial class GrblPanel : UserControl
 	{
 		GrblCore Core;
-		System.Drawing.Bitmap mBitmap;
+		System.Drawing.Bitmap mBitmap; // for holding the graphics of loaded g-code
 		System.Threading.Thread TH;
-		Matrix mLastMatrix;
-		private GPoint mLastWPos;
-		private GPoint mLastMPos;
-		private float mCurF;
-		private float mCurS;
+		Matrix mLastMatrix; // matrix to transform "machine" to "draw"
+		private GPoint mLastWPos; // last work position
+		private GPoint mLastMPos; // last machine position
+		private float mCurF; // current feed
+		private float mCurS; // current spindle
 		private bool mFSTrig;
 
 		public GrblPanel()

@@ -14,6 +14,9 @@ using System.Threading;
 
 namespace LaserGRBL.RasterConverter
 {
+	/// <summary>
+	/// Class for manipulating a bitmap image (resizing, cropping, etc) and generating g-code
+	/// </summary>
 	public class ImageProcessor : ICloneable
 	{
 		public delegate void PreviewBeginDlg();

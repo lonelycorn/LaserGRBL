@@ -10,7 +10,9 @@ using System.Threading;
 
 namespace Tools
 {
-
+	/// <summary>
+	/// Thread to run a function periodically
+	/// </summary>
 	public class ThreadObject : ThreadClass
 	{
 
@@ -40,6 +42,9 @@ namespace Tools
 	}
 
 
+	/// <summary>
+	/// Abstract base class for threads
+	/// </summary>
 	public abstract class ThreadClass : IDisposable
 	{
 
